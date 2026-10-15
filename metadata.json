@@ -1,0 +1,6 @@
+{
+  "name": "Android History",
+  "description": "Chronicle of every Android release, Google innovations, key software features, and major hardware milestones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
