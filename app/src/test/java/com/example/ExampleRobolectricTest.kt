@@ -37,6 +37,22 @@ class ExampleRobolectricTest {
   }
 
   @Test
+  fun `verify counterparts graveyard and gradle loaded properly`() {
+    val viewModel = HistoryViewModel()
+    val state = viewModel.uiState.value
+
+    assertTrue("Counterparts should not be empty", state.counterpartComparisons.isNotEmpty())
+    assertTrue("Should compare notifications", state.counterpartComparisons.any { it.id == "notifications" })
+
+    assertTrue("Graveyard features should not be empty", state.graveyardFeatures.isNotEmpty())
+    assertTrue("Should include Android Beam in graveyard", state.graveyardFeatures.any { it.id == "android_beam" })
+
+    assertTrue("Gradle milestones should not be empty", state.gradleMilestones.isNotEmpty())
+    assertTrue("Gradle topics should not be empty", state.gradleTopics.isNotEmpty())
+    assertTrue("Should include Gradle compilation pipeline", state.gradleTopics.any { it.id == "pipeline" })
+  }
+
+  @Test
   fun `verify bookmark toggle and tabs`() {
     val viewModel = HistoryViewModel()
     val firstReleaseId = viewModel.uiState.value.releases.first().id

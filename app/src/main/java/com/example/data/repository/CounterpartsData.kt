@@ -1,0 +1,143 @@
+package com.example.data.repository
+
+import com.example.data.model.CounterpartComparison
+
+object CounterpartsData {
+    val comparisons = listOf(
+        CounterpartComparison(
+            id = "notifications",
+            title = "Pull-Down Notification Shade",
+            category = "Core UI",
+            androidFeature = "Notification Shade & Ticker",
+            androidIntroduced = "Android 1.0 (2008)",
+            androidPioneered = true,
+            rivalFeature = "Notification Center",
+            rivalPlatform = "Apple iOS 5",
+            rivalIntroduced = "iOS 5 (2011)",
+            whoDidItFirstSummary = "Android pioneered the pull-down shade in 2008, 3 full years before Apple introduced Notification Center in 2011.",
+            androidAdvantage = "Android notifications remain vastly superior: granular per-channel categorization, inline quick replies, priority conversation badges, snooze timers, and lock screen priority filtering.",
+            philosophicalContrast = "Android treated notifications as a first-class system status hub from Day 1; iOS originally only had modal interrupting popups until borrowing Android's pull-down paradigm.",
+            accentColorHex = 0xFF4285F4
+        ),
+        CounterpartComparison(
+            id = "widgets",
+            title = "Home Screen Widgets",
+            category = "Home Screen",
+            androidFeature = "Interactive Live Widgets & AppWidgets",
+            androidIntroduced = "Android 1.5 Cupcake (2009)",
+            androidPioneered = true,
+            rivalFeature = "Home Screen Widgets",
+            rivalPlatform = "Apple iOS 14",
+            rivalIntroduced = "iOS 14 (2020)",
+            whoDidItFirstSummary = "Android supported third-party interactive home screen widgets 11 years before iOS permitted widgets on the main home screen grid in 2020.",
+            androidAdvantage = "Android widgets support direct interactive buttons, sliders, scrollable lists (e.g. Gmail / Spotify queues), and resizable grid anchors without requiring opening the parent app.",
+            philosophicalContrast = "Apple prioritized uniform grid aesthetics and battery preservation by banning interactive widget controls for a decade, while Android favored functional glanceable utility.",
+            accentColorHex = 0xFF34A853
+        ),
+        CounterpartComparison(
+            id = "navigation_maps",
+            title = "Turn-by-Turn GPS Navigation",
+            category = "Services & Maps",
+            androidFeature = "Google Maps Navigation (Free Spoken Voice)",
+            androidIntroduced = "Android 2.0 Eclair (2009)",
+            androidPioneered = true,
+            rivalFeature = "Apple Maps Turn-by-Turn",
+            rivalPlatform = "Apple iOS 6",
+            rivalIntroduced = "iOS 6 (2012)",
+            whoDidItFirstSummary = "Google bundled free turn-by-turn spoken GPS in 2009 on Motorola Droid, devastating standalone Garmin/TomTom units. Apple introduced its own maps in 2012.",
+            androidAdvantage = "Real-time Google crowd-sourced traffic, lane guidance, offline map caching, Google Street View overlays, and deep Google Business index integration.",
+            philosophicalContrast = "Google leveraged massive web search and satellite imagery datasets to commoditize navigation for free; Apple replaced Google Maps in iOS 6 to sever dependence on Google.",
+            accentColorHex = 0xFFEA4335
+        ),
+        CounterpartComparison(
+            id = "theming",
+            title = "System Personalization & Dynamic Theming",
+            category = "Design",
+            androidFeature = "Material You (Monet Dynamic Color Engine)",
+            androidIntroduced = "Android 12 (2021)",
+            androidPioneered = true,
+            rivalFeature = "Lock Screen Customization & Tinted Icons",
+            rivalPlatform = "Apple iOS 16 / iOS 18",
+            rivalIntroduced = "iOS 16 (2022) & iOS 18 (2024)",
+            whoDidItFirstSummary = "Android 12 launched dynamic color extraction from wallpapers across the OS and third-party apps in 2021. iOS added tinted icons in iOS 18.",
+            androidAdvantage = "Material You algorithmically analyzes wallpaper chromatic harmony, generating 65 tonal palettes applied consistently across Quick Settings, widgets, system bars, and third-party apps.",
+            philosophicalContrast = "Google embraced radical user expression ('You define the theme'), whereas Apple historically enforced strict monochromatic and uniform visual guidelines.",
+            accentColorHex = 0xFF7C4DFF
+        ),
+        CounterpartComparison(
+            id = "sideloading",
+            title = "Open App Distribution & Sideloading",
+            category = "Platform Freedom",
+            androidFeature = "APK / AAB Sideloading & Alternative App Stores",
+            androidIntroduced = "Android 1.0 (2008)",
+            androidPioneered = true,
+            rivalFeature = "Alternative Marketplaces (EU DMA only)",
+            rivalPlatform = "Apple iOS 17.4",
+            rivalIntroduced = "iOS 17.4 (2024 - EU Only)",
+            whoDidItFirstSummary = "Android has permitted installing apps from browsers, memory cards, and independent stores (F-Droid, Amazon Appstore, Samsung Galaxy Store) since Day 1.",
+            androidAdvantage = "Developers can distribute experimental builds, open-source software, and emulators globally without paying 30% platform commissions or submitting to arbitrary app rejections.",
+            philosophicalContrast = "Open Source Linux philosophy (users own their hardware) versus Apple's Walled Garden curation where only Apple decides what software runs on your phone.",
+            accentColorHex = 0xFFFBBC05
+        ),
+        CounterpartComparison(
+            id = "sharing",
+            title = "Device-to-Device Wireless File Sharing",
+            category = "Connectivity",
+            androidFeature = "Android Beam (NFC) -> Nearby Share / Quick Share",
+            androidIntroduced = "Android 4.0 (2011) / Nearby Share (2020)",
+            androidPioneered = false,
+            rivalFeature = "AirDrop",
+            rivalPlatform = "Apple iOS 7",
+            rivalIntroduced = "iOS 7 (2013)",
+            whoDidItFirstSummary = "Android Beam introduced NFC bumping in 2011. Apple introduced Wi-Fi Direct AirDrop in 2013. Google and Samsung unified Nearby Share into Quick Share in 2024.",
+            androidAdvantage = "Quick Share works cross-platform across Android smartphones, tablets, Chromebooks, and Windows PCs via the official Quick Share Windows application.",
+            philosophicalContrast = "AirDrop is strictly locked to Apple hardware; Quick Share operates across diverse hardware manufacturers, chipsets, and operating systems.",
+            accentColorHex = 0xFF00E5FF
+        ),
+        CounterpartComparison(
+            id = "wearables",
+            title = "Smartwatch Operating Systems",
+            category = "Ecosystem",
+            androidFeature = "Android Wear -> Wear OS (by Google & Samsung)",
+            androidIntroduced = "June 2014 (LG G Watch / Moto 360)",
+            androidPioneered = true,
+            rivalFeature = "Apple watchOS",
+            rivalPlatform = "Apple watchOS",
+            rivalIntroduced = "April 2015 (Apple Watch)",
+            whoDidItFirstSummary = "Google unveiled Android Wear and the iconic round Moto 360 almost a full year before the first Apple Watch shipped in April 2015.",
+            androidAdvantage = "Diversity of hardware forms: classic round dials, rugged outdoor sports watches, luxury brands (TAG Heuer), and rotating hardware crowns or digital bezels.",
+            philosophicalContrast = "Android Wear prioritized glanceable contextual cards and diverse physical timepiece shapes; watchOS focused on a single proprietary rectangular case.",
+            accentColorHex = 0xFF009688
+        ),
+        CounterpartComparison(
+            id = "automotive",
+            title = "In-Car Infotainment Systems",
+            category = "Automotive",
+            androidFeature = "Android Auto & Android Automotive OS (Built-in)",
+            androidIntroduced = "Android Auto (2014) / Automotive OS (2017)",
+            androidPioneered = false,
+            rivalFeature = "Apple CarPlay",
+            rivalPlatform = "Apple CarPlay",
+            rivalIntroduced = "March 2014",
+            whoDidItFirstSummary = "Apple CarPlay debuted in early 2014; Google followed months later with Android Auto, then took the lead with Android Automotive OS powering car hardware directly.",
+            androidAdvantage = "Android Automotive OS runs natively on vehicle hardware (Volvo, Polestar, Ford, GM) managing climate, battery diagnostics, and Google Assistant without needing a connected phone.",
+            philosophicalContrast = "CarPlay remains predominantly a projected phone display; Google expanded from phone projection into the actual foundational operating system of modern cars.",
+            accentColorHex = 0xFFFF5722
+        ),
+        CounterpartComparison(
+            id = "messaging",
+            title = "Rich Modern Messaging Protocol",
+            category = "Communication",
+            androidFeature = "RCS (Rich Communication Services) via Google Messages",
+            androidIntroduced = "2018 (GSMA Universal Profile) / 2020",
+            androidPioneered = true,
+            rivalFeature = "iMessage & iOS 18 RCS Support",
+            rivalPlatform = "Apple iOS 5 (iMessage) / iOS 18 (RCS)",
+            rivalIntroduced = "iMessage (2011) / RCS in iOS 18 (2024)",
+            whoDidItFirstSummary = "Apple locked blue bubbles into iMessage in 2011. Google spearheaded modernizing carrier SMS with the open GSMA RCS standard, forcing Apple to adopt RCS in 2024.",
+            androidAdvantage = "RCS is an open telecommunications industry standard providing typing indicators, high-res photos, read receipts, and end-to-end encryption across any phone brand.",
+            philosophicalContrast = "iMessage was deliberately used by Apple as an ecosystem lock-in mechanism; Google campaigned under #GetTheMessage to establish a universal open messaging standard.",
+            accentColorHex = 0xFF2979FF
+        )
+    )
+}

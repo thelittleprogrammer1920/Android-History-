@@ -5,11 +5,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.model.AndroidEra
 import com.example.data.model.AndroidRelease
 import com.example.data.model.ArchitectureTopic
+import com.example.data.model.ChatMessage
+import com.example.data.model.CounterpartComparison
 import com.example.data.model.EasterEggType
+import com.example.data.model.GradleMilestone
+import com.example.data.model.GradleTopic
+import com.example.data.model.GraveyardFeature
 import com.example.data.model.HardwareMilestone
 import com.example.data.model.QuizQuestion
 import com.example.data.repository.AndroidReleasesData
 import com.example.data.repository.ArchitectureData
+import com.example.data.repository.CounterpartsData
+import com.example.data.repository.GeminiRepository
+import com.example.data.repository.GradleData
+import com.example.data.repository.GraveyardData
 import com.example.data.repository.HardwareData
 import com.example.data.repository.TriviaData
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,12 +26,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 enum class AppTab(val title: String) {
-    CHRONICLE("Chronicle"),
+    CHRONICLE("Releases"),
     HARDWARE("Hardware"),
     ARCHITECTURE("Architecture"),
-    TRIVIA_MUSEUM("Easter Eggs & Quiz")
+    GRADLE("Gradle"),
+    COUNTERPARTS("Counterparts"),
+    GRAVEYARD("Graveyard"),
+    GEMINI_AI("Ask Gemini AI"),
+    TRIVIA_MUSEUM("Arcade & Quiz")
 }
 
 data class HistoryUiState(
@@ -30,6 +44,10 @@ data class HistoryUiState(
     val releases: List<AndroidRelease> = AndroidReleasesData.releases,
     val hardwareDevices: List<HardwareMilestone> = HardwareData.devices,
     val architectureTopics: List<ArchitectureTopic> = ArchitectureData.topics,
+    val counterpartComparisons: List<CounterpartComparison> = CounterpartsData.comparisons,
+    val graveyardFeatures: List<GraveyardFeature> = GraveyardData.features,
+    val gradleMilestones: List<GradleMilestone> = GradleData.timeline,
+    val gradleTopics: List<GradleTopic> = GradleData.topics,
     val searchQuery: String = "",
     val selectedEra: AndroidEra? = null,
     val bookmarkedReleaseIds: Set<String> = emptySet(),
@@ -38,6 +56,15 @@ data class HistoryUiState(
     val selectedHardware: HardwareMilestone? = null,
     val selectedArchitecture: ArchitectureTopic? = null,
     val activeEasterEgg: EasterEggType? = null,
+    // Gemini AI Chat state
+    val geminiChatMessages: List<ChatMessage> = listOf(
+        ChatMessage(
+            id = "welcome_bot",
+            text = "Hello! I am Bugdroid AI, powered by Gemini. Ask me anything about Android releases, Google milestones, Android vs iOS counterparts, killed features in the Graveyard, or how Gradle builds Android apps!",
+            isUser = false
+        )
+    ),
+    val isGeminiLoading: Boolean = false,
     // Quiz state
     val quizQuestions: List<QuizQuestion> = TriviaData.questions,
     val currentQuizIndex: Int = 0,
@@ -126,23 +153,24 @@ class HistoryViewModel : ViewModel() {
         _uiState.update { it.copy(activeEasterEgg = null) }
     }
 
-    // Interactive toy helpers
-    fun rotateClockHand(degrees: Float) {
-        val newAngle = (degrees % 360f + 360f) % 360f
-        val unlocked = newAngle in 350f..360f || newAngle in 0f..10f
-        _uiState.update { it.copy(clockAngle = newAngle, isClockUnlocked = unlocked) }
-    }
+    // Gemini AI chat
+    fun sendGeminiMessage(prompt: String) {
+        val userMsg = ChatMessage(id = UUID.randomUUID().toString(), text = prompt, isUser = true)
+        _uiState.update {
+            it.copy(
+                geminiChatMessages = it.geminiChatMessages + userMsg,
+                isGeminiLoading = true
+            )
+        }
 
-    fun feedNekoCat() {
-        _uiState.update { it.copy(nekoCatsCollected = it.nekoCatsCollected + 1) }
-    }
-
-    fun tapFlappyDroid() {
-        _uiState.update { current ->
-            if (current.flappyGameOver) {
-                current.copy(flappyScore = 1, flappyGameOver = false)
-            } else {
-                current.copy(flappyScore = current.flappyScore + 1)
+        viewModelScope.launch {
+            val responseText = GeminiRepository.askGemini(prompt)
+            val aiMsg = ChatMessage(id = UUID.randomUUID().toString(), text = responseText, isUser = false)
+            _uiState.update {
+                it.copy(
+                    geminiChatMessages = it.geminiChatMessages + aiMsg,
+                    isGeminiLoading = false
+                )
             }
         }
     }
